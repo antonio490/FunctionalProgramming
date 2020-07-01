@@ -41,6 +41,6 @@ Referential transparency allows formal provability, meaning we can reach some se
 
 Recursion: Functions that call themselves. It is elegant but difficult to follow. In Python recursion is limited with a maximun recursion depth.
 
-# Statements 
-Functional programming in its pure way does not use statements (Asignments, loops, conditional branching...)
+####  Statements 
+Functional programming in its pure way does not use statements (Asignments, loops, conditional branching...) instead it uses expresions in order to improve performance.
 
