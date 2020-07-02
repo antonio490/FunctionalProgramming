@@ -53,6 +53,7 @@ for i in (j for j in fibonacci if not j%2):
     print(i)
 
 ## Numerical and logical functions
+
 ## Several built-in functions for working with iterators
 ## Logical functions any(), all()
 ## Numerical functions min(), max(), sum()
@@ -110,9 +111,76 @@ get_sum(numbers)
 ## Best way
 sum(numbers)
 
-
-
 ## Itertools
 
+## The itertools provide several functions:
+## fucntions to create or operate on iterators.
+## Select and group elements from iterators.
+## Implement combinational logic.
+
+import itertools as it
+
+## count()
+for i in it.count(start=10, step=1):
+    if not i:
+        break
+    print(i)
+
+## cycle()
+s = "iterators rock"
+for i, ch in zip(range(20), it.cycle(s)):
+    print(i, ch)
+
+## repeat()
+s = "iterators rock"
+for i, s in zip(range(10), it.repeat(s)):
+    print(i, s)
+
+## chain()
+for e in it.chain('abc', [3, 2, 1], 'cba'):
+    print(e)
+
+## compress()
+sentence = 'iterators', "don't", 'rock'
+selector = True, False, True 
+for word in it.compress(sentence, selector):
+    print(word)
+
+## takewhile()
+
+for i in it.takewhile(lambda x: x < 10, it.count()):
+    print(i)
+
+## dropwhile
+
+for i in it.dropwhile(lambda x: x < 5, it.count()):
+    if i > 10:
+        break
+    print()
+
+## groupby
+
+is_even = lambda x: not x%2
+
+for e, g in it.groupby(
+        sorted(range(10), key=is_even),
+        key=is_even
+    ):
+    print(e, list(g))
+
+## Combinatorial functions
+
+### product()
+for x, y in it.product([0,1,2], [3,4,5]):
+    print(x, y)
+
+### permutations()
+for i in it.permutations([1,2,3]):
+    print(list(i))
+
+### combinations()
+
+for i in it.combinations([1,2,3], r=2)
+    print(list(i))
 ## Functools
 
