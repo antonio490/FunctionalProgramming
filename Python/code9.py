@@ -53,6 +53,64 @@ for i in (j for j in fibonacci if not j%2):
     print(i)
 
 ## Numerical and logical functions
+## Several built-in functions for working with iterators
+## Logical functions any(), all()
+## Numerical functions min(), max(), sum()
+
+none_true = [0, 0, 0]
+some_true = [0, 1, 0]
+all_true = [1, 1, 1]
+
+def check_any(i):
+    for e in i:
+        if e:
+            return True
+        return False
+
+check_any(none_true)
+
+## Best way
+any(none_true)
+
+## Other way
+True in (bool(e) for e in none_true)
+
+def check_all(i):
+    for e in i:
+        if not e:
+            return False
+        return True 
+
+## Best way
+all(none_true)
+
+False not in (bool(e) for e in none_true)
+
+## Sorted
+numbers = [-1, 2, 0, 1]
+sorted(numbers)
+
+## Min
+sorted(numbers)[-1]
+min(numbers)
+
+# Max
+sorted(numbers)[0]
+max(numbers)
+
+## Sum
+
+def get_sum(i):
+    total = 0
+    for e in i:
+        total += e
+    return total
+
+get_sum(numbers)
+## Best way
+sum(numbers)
+
+
 
 ## Itertools
 
