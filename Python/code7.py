@@ -160,3 +160,61 @@ while True:
         r.send(recv)
     except StopIteration:
         break
+
+## Convenience iterators - collections module
+
+## Fields in a regular tuple have an index but no name
+## Fields in a named tuple have an index and a name
+## Can make code more readable
+
+## A regular dict has no predictable order
+## An order dict does have an order.
+
+## Retireven a non-existing key from a regular dict gives a KeyError
+## A default dict gives a default value.
+
+## The collections module offers more than this.
+
+## namedtuple
+
+from colections import namedtuple
+
+Person = namedtuple('Person', ['name', 'age'])
+Jay_Z = Person(name='Sean Carter', age=47)
+
+name, age = Jay_Z
+print("%s is %s years old" % (Jay_Z.name, Jay_Z.age)) # Code more explicit
+
+from collections import OrderedDict
+
+d = OrderedDict([
+    ('Lizard','Reptile'),
+    ('Whale','Mammal')
+])
+
+for species, class_ in d.items():
+    print('%s is a %s' % (species, class_))
+
+from collections import defaultdict
+
+favorite_programming_language = {
+    'Claire' : 'Assembler',
+    'John' : 'Ruby',
+    'Sarah' : 'Javascript'
+}
+
+d = defaultdict(lambda: 'Python')
+d.update(favorite_programming_language)
+
+print(d['Harry'])
+# Python
+print(d['John'])
+# Ruby
+
+## Summary
+
+# 1 Iterators are objects that contain other objects.
+# 2 Built-in iterators such as dict, list, tuples and sets.
+# 3 Collections module offers other convenient iterators.
+# 4 Generators are functions that yield and they are also iterators.
+# 5 Generators allow for lazy evaluation and coroutines, or lightweight threading.
