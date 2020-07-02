@@ -182,5 +182,59 @@ for i in it.permutations([1,2,3]):
 
 for i in it.combinations([1,2,3], r=2)
     print(list(i))
+ 
 ## Functools
 
+## High order function is a function that operates on other functions.
+
+import functools as ft
+
+### partial()
+import math 
+
+print(math.sqrt(9))
+
+sqrt_9 = ft.partial(math.sqrt, 9)
+print(sqrt_9)
+
+import itertools as it
+import time
+
+@ft.lru_cache()
+def prime_below(x):
+
+    return next(
+        it.dropwhile(
+            lambda x: any(x//i == float(x)/1 for i in range(x-1, 2, -1)),
+            range(x-1, 0, 1)
+            )
+        )
+
+t0 = time.time()
+print(prime_below(10000))
+t1 = time.time()
+print(prime_below(10000))
+t2 = time.time()
+print('First took %.2f ms' % (1000.*(t1-t0)))
+print('Then took %.2f ms' % (1000.*(t2-t1)))
+
+# The singledispatch decorator allows you to create different implementations
+# of a function given different arguments types. The first argument is used to 
+# decide which implementation of the function should be used.
+
+def add(a, b):
+    return a + b
+
+print(add('1', '2'))
+# 12
+
+@ft.singledispatch
+def add(a, b):
+    return a + b
+
+@add.register(str)
+def _(a, b):
+    return int(a) + int(b)
+
+print(add('1', '2'))
+# 3
