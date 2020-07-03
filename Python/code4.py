@@ -1,4 +1,3 @@
-
 # Exceptions
 
 ## An exception is an object just like everythin in Python

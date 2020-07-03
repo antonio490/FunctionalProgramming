@@ -1,0 +1,58 @@
+
+import net.liftweb.json.DefaultFormats
+import net.liftweb.json._
+
+case class Impressions(
+    id : String,
+    app_id : Int,
+    country_code : String,
+    advertiser_id: Int
+)   
+
+case class Clicks(
+    impression_id : String,
+    reveneu : Double
+)
+
+val jsonClicks = parse("click.json")
+val jsonImpressions = parse("impressions.json")
+
+var countClicks : Int;
+var countImpr : Int;
+var sumReveneu : Double;
+
+for (click <- jsonClicks.groupBy(_.country_code, _.app_id)){
+    val c = click.extract[Clicks]
+        
+        ## Count clicks
+        countClicks += 1
+        
+        # Add reveneu
+        sumReveneu += c.reveneu
+    }
+}
+
+for (impr <- jsonImpressions){
+    val i = impr.extract[Impressions]
+
+    if(c.app_id == id && c.country_code == country){
+
+        ## Count impressions
+        countImpr += 1
+    }
+}
+
+
+## Write output json
+
+val outputJson = ujson.Arr(
+    ujson.Obj(
+        "app_id" -> id, 
+        "country_code" -> country,
+        "impressions" -> countImpr,
+        "clicks" -> countClicks,
+        "reveneu" -> sumReveneu
+    )
+)
+
+ujson.write(outputJson, indent = 4)
